@@ -1,0 +1,141 @@
+1) POST service for adding data to track and question table
+URL: http://127.0.0.1:8000/track/post/
+
+Call type : POST
+
+input:(request ) sending via body
+
+[{
+    "name":"Math1",
+    "questions": [
+        {"question_text": "a"},
+        {"question_text":"b"},
+        {"question_text": "c"},
+        {"question_text":"d"}
+    ]
+},
+{
+    "name":"English1",
+    "questions": [
+        {"question_text": "e"},
+        {"question_text":"f"},
+        {"question_text": "g"},
+        {"question_text":"h"}
+    ]
+}
+]
+
+output:
+[
+    {
+        "id": 14,
+        "name": "Math",
+        "questions": [
+            {
+                "id": 51,
+                "question_text": "a"
+            },
+            {
+                "id": 52,
+                "question_text": "b"
+            },
+            {
+                "id": 53,
+                "question_text": "c"
+            },
+            {
+                "id": 54,
+                "question_text": "d"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "name": "English",
+        "questions": [
+            {
+                "id": 55,
+                "question_text": "e"
+            },
+            {
+                "id": 56,
+                "question_text": "f"
+            },
+            {
+                "id": 57,
+                "question_text": "g"
+            },
+            {
+                "id": 58,
+                "question_text": "h"
+            }
+        ]
+    }
+]
+
+2) Finding question list from a given track
+
+URL:  http://127.0.0.1:8000/listquestions/?name=English  #(name is track)
+
+Call Type: GET
+
+Output:
+
+[
+    {
+        "question_text": "a"
+    },
+    {
+        "question_text": "b"
+    },
+    {
+        "question_text": "c"
+    },
+    {
+        "question_text": "d"
+    }
+]
+
+
+3) Post the question's choics to choice table
+
+URL: http://127.0.0.1:8000/api/choices/
+
+Call type: POST
+
+OUTPUT:
+
+[
+    {
+        "id": 19,
+        "question": 57,
+        "choice_text": "ss",
+        "votes": 1
+    },
+    {
+        "id": 20,
+        "question": 63,
+        "choice_text": "ham",
+        "votes": 12
+    },
+    {
+        "id": 21,
+        "question": 55,
+        "choice_text": "jam",
+        "votes": 14
+    }
+]
+
+
+4) Total Count of Right and wrong answer
+
+URL: http://127.0.0.1:8000/count/?q_id=57  ( #question id =57)
+
+Call Type : GET
+
+OUTPUT:
+
+{
+    "total_wrong_count": 1,
+    "total_correct_count": 1
+}

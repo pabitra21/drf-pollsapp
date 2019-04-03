@@ -17,9 +17,18 @@ from django.contrib import admin
 from django.urls import include, path
 from . import routers
 from polls import views as polls_views
+from polls.views import TrackView
 
 urlpatterns = [
     path('', polls_views.index, name='index'),
+
+    path('track/post/', TrackView.as_view()),
+    path('track/get/', TrackView.as_view()),
+    # path('track/delete/<int:pk>/', TrackView.as_view()),
+
+    path('count/', polls_views.total_count),
+    path('listquestions/',polls_views.fetch_questions_list),
+
     path('polls/', include('polls.urls')),
     path('api/', include(routers.SharedAPIRootRouter.router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
